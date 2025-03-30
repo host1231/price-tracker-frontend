@@ -4,9 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { validateEmail } from '../../utils/helper';
 import AuthLayout from '../../components/AuthLayout';
 import AuthContext from '../../context/AuthContext';
-import { TransactionContext } from '../../context/TransactionContext';
 import { Toaster } from 'react-hot-toast';
 import Logo from '../../assets/images/logo.svg';
+import Preloader from '../../components/Preloader';
 
 
 const Login = () => {
@@ -14,7 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {getTransaction} = useContext(TransactionContext);
+  const {loading} = useContext(AuthContext);
   
   const [error, setError] = useState('');
 
@@ -36,13 +36,20 @@ const Login = () => {
 
     if (res.success) {
       navigate('/dashboard');
-      await getTransaction();
     } else {
       setEmail('');
       setPassword('');
     }
 
   }
+
+  if (loading) {
+    return (
+      <Preloader />
+    )
+  }
+
+ 
 
   return (
     <AuthLayout>

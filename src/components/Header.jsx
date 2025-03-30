@@ -16,7 +16,6 @@ const Header = () => {
     <header className='bg-white shadow-2xl p-3 rounded-lg'>
         <div className='flex justify-between items-center'>
           <Link to='/dashboard'>
-            {/* <h3 className='text sm:text-2xl font-extrabold'>Pul izləmə</h3> */}
             <img  src={Logo} alt='Logo' />
           </Link>
           <div className='flex gap-3 items-center'>

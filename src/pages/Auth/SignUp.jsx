@@ -6,10 +6,11 @@ import { validateEmail } from '../../utils/helper';
 import AuthContext from '../../context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import Logo from '../../assets/images/logo.svg';
+import Preloader from '../../components/Preloader';
 
 
 const SignUp = () => {
-  const { register } = useContext(AuthContext);
+  const { register, loading } = useContext(AuthContext);
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -47,8 +48,12 @@ const SignUp = () => {
       setEmail('');
       setPassword('');
     }
-
   }
+
+  if (loading) {
+    return <Preloader />
+  }
+
   return (
     <AuthLayout side={true}>
       <div className='w-full max-w-lg m-10'>

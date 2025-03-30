@@ -4,12 +4,11 @@ import { IoIosCloseCircleOutline } from 'react-icons/io'
 import Select from './Select';
 import { TransactionContext } from '../context/TransactionContext';
 import AuthContext from '../context/AuthContext';
-import toast, { Toaster } from 'react-hot-toast';
 
 const Modal = ({ isModalOpen, setIsModalOpen }) => {
     const [title, setTitle] = useState('');
     const [type, setType] = useState('');
-    const [date, setDate] = useState('Выберите дату');
+    const [date, setDate] = useState('');
     const [amount, setAmount] = useState('');
 
     const [error, setError] = useState('');
@@ -27,9 +26,9 @@ const Modal = ({ isModalOpen, setIsModalOpen }) => {
         }
 
         try {
+            setIsModalOpen(false);
             await addTransaction(user._id, title, type, date, amount);
             setError(''); 
-            setIsModalOpen(false);
         } catch (error) {
         }
     }
@@ -58,6 +57,7 @@ const Modal = ({ isModalOpen, setIsModalOpen }) => {
                     <Input
                         type='date'
                         label='Tarix'
+                        placeholder="DD.MM.YYYY"
                         value={date}
                         onChange={({ target }) => setDate(target.value)}
                     />

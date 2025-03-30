@@ -1,5 +1,5 @@
 import React from 'react'
-import { LuTrendingDown, LuTrendingUp, LuTrendingUpDown } from "react-icons/lu";
+import { LuTrendingDown, LuTrendingUp } from "react-icons/lu";
 import { FaTrashAlt } from "react-icons/fa";
 
 const ItemTransaction = ({ income, title, amount, date, deleteBtn }) => {

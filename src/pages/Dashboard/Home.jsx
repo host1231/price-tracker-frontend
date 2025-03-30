@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Header from '../../components/Header'
 import ItemTotalTransaction from '../../components/ItemTotalTransaction';
 import ItemTransaction from '../../components/ItemTransaction';
@@ -6,19 +6,14 @@ import Diagram from '../../components/Diagram';
 import { LuTrendingUpDown } from "react-icons/lu";
 import Modal from '../../components/Modal';
 import { TransactionContext } from '../../context/TransactionContext';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { dateFormat } from '../../utils/dateFormat';
-import AuthContext from '../../context/AuthContext';
-import Logo from '../../assets/images/logo.svg'
-
-
-
+import Preloader from '../../components/Preloader';
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { transactions, getTransaction, deleteTransaction, totalIncome, totalExpense, totalBalance, loading } = useContext(TransactionContext);
-  const {user} = useContext(AuthContext);
+  const { transactions, deleteTransaction, totalIncome, totalExpense, totalBalance, loading } = useContext(TransactionContext);
 
   const deleteItemTransaction = (id) => {
       deleteTransaction(id);
@@ -26,9 +21,7 @@ const Home = () => {
 
   if (loading) {
     return (
-      <div className='w-screen h-screen flex justify-center items-center'>
-        <img className='animate-ping' src={Logo} />
-      </div>
+      <Preloader />
     )
   }
 
@@ -57,8 +50,6 @@ const Home = () => {
               ) : (
                 <div className='flex justify-center items-center h-[90%]'>
                   <div>
-
-                    {/* <h4>Добавьте первую оплату</h4> */}
                     <button className='btn-primary flex items-center gap-5 justify-center uppercase' onClick={() => setIsModalOpen(true)}>
                       <LuTrendingUpDown />
                       ödəniş əlavə edin

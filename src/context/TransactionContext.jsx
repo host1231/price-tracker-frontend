@@ -1,21 +1,20 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import AuthContext from './AuthContext';
-
+import api from '../utils/api';
 
 export const TransactionContext = createContext();
 
 const TransactionProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     const [transactions, setTransactions] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const {user} = useContext(AuthContext)
+    const [loading, setLoading] = useState(false);
+    const { user } = useContext(AuthContext)
 
 
     const getTransaction = async (userId) => {
         try {
-            const res = await axios.get('/api/transactions/get', {
+            const res = await api.get('/api/transactions/get', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
@@ -28,13 +27,14 @@ const TransactionProvider = ({ children }) => {
                 position: 'bottom-right'
             });
         } finally {
-            setLoading(false);
+            // setLoading(false);
         }
     }
 
     const addTransaction = async (userId, title, type, date, amount) => {
         try {
-            const res = await axios.post('/api/transactions/add', { userId, title, type, date, amount }, {
+            setLoading(true);
+            const res = await api.post('/api/transactions/add', { userId, title, type, date, amount }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -48,16 +48,19 @@ const TransactionProvider = ({ children }) => {
             toast.error('Ödəniş əlavə edilmədi', {
                 position: 'bottom-right'
             });
+        } finally {
+            setLoading(false);
         }
     }
 
 
     const deleteTransaction = async (id) => {
         try {
-            const res = await axios.delete(`/api/transactions/delete/${id}`, {
+            setLoading(true);
+            const res = await api.delete(`/api/transactions/delete/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
-                }   
+                }
             });
             await getTransaction();
             toast.success('Ödəniş uğurla silindi', {
@@ -66,7 +69,9 @@ const TransactionProvider = ({ children }) => {
         } catch (error) {
             toast.error('Ödəniş silinməyib', {
                 position: 'bottom-right'
-              });
+            });
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -77,7 +82,7 @@ const TransactionProvider = ({ children }) => {
             }
             return sum;
         }, 0);
-        return value;
+        return value.toFixed(2);
     }
 
     const totalExpense = () => {
@@ -87,10 +92,10 @@ const TransactionProvider = ({ children }) => {
             }
             return sum;
         }, 0);
-        return value;
+        return value.toFixed(2);
     }
 
-    const totalBalance = () => totalIncome() - totalExpense();
+    const totalBalance = () => (totalIncome() - totalExpense()).toFixed(2);
 
     useEffect(() => {
         if (user?._id) {

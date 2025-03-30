@@ -1,1 +1,0 @@
-// axios.defaults.baseURL = 'https://price-tracker-backend-xi.vercel.app';
