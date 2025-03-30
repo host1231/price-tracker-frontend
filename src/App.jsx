@@ -19,8 +19,16 @@ const App = () => {
                   <Home />
                 </ProtectedRoute>
               } />
-              <Route path='/login' element={<Login />} />
-              <Route path='/signUp' element={<SignUp />} />
+              <Route path='/login' element={
+                <AuthRoute>
+                  <Login />
+                </AuthRoute>
+              } />
+              <Route path='/signUp' element={
+                <AuthRoute>
+                  <SignUp />
+                </AuthRoute>
+              } />
             </Routes>
           </Router>
         </TransactionProvider>
@@ -44,5 +52,11 @@ const Root = () => {
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
 
-  return token ? children : <Navigate to='/login' replace />
-}
+  return token ? children : <Navigate to='/login' replace />;
+};
+
+const AuthRoute = ({ children }) => {
+  const token = localStorage.getItem('token');
+
+  return token ? <Navigate to='/dashboard' replace /> : children;
+};
