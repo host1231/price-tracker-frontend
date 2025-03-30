@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-family: 'Manrope', sans-serif;
+}
+
+@layer {
+    html {
+        font-family: var(--font-family);
+    }
+
+    body {
+        background-color: #f0f9fa;
+        overflow-x: hidden;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #0d0c0c;
+        border-radius: 8px;
+    }
+}
+
+.input-box {
+    @apply w-full flex justify-between gap-3 text-sm text-black border border-gray-300 px-4 py-3 rounded-lg mt-3 mb-4;
+}
+
+.btn-primary {
+    @apply bg-slate-900 text-white w-full p-3 text-sm lg:text-lg font-bold rounded-lg cursor-pointer border border-slate-900 transition duration-300 ease-in-out hover:bg-transparent hover:text-slate-900;
+}
