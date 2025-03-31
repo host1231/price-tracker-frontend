@@ -5,8 +5,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Diagram = ({ totalIncome, totalExpense, totalBalance }) => {
-    const isAllZero = totalIncome === 0 && totalExpense === 0 && totalBalance === 0;
-
+    const isAllZero = totalIncome == 0 && totalExpense == 0 && totalBalance == 0;
+ 
     const data = {
         labels: ['Ümumi mədaxil', 'Ümumi xərc', 'Ümumi balans'],
         datasets: [
