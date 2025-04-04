@@ -5,6 +5,7 @@ import Login from './pages/Auth/Login'
 import SignUp from './pages/Auth/SignUp'
 import { AuthProvider } from './context/AuthContext'
 import TransactionProvider from './context/TransactionContext'
+import { Analytics } from "@vercel/analytics/react"
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
           </Router>
         </TransactionProvider>
       </AuthProvider>
+      <Analytics />
     </>
   )
 }
