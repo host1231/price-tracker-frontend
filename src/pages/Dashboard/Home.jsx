@@ -9,9 +9,12 @@ import { TransactionContext } from '../../context/TransactionContext';
 import { Toaster } from 'react-hot-toast';
 import { dateFormat } from '../../utils/dateFormat';
 import Preloader from '../../components/Preloader';
+import AuthContext from '../../context/AuthContext';
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const {userLoading} = useContext(AuthContext);
 
   const { transactions, deleteTransaction, totalIncome, totalExpense, totalBalance, loading } = useContext(TransactionContext);
 
@@ -19,7 +22,7 @@ const Home = () => {
       deleteTransaction(id);
   }
 
-  if (loading) {
+  if (userLoading || loading) {
     return (
       <Preloader />
     )

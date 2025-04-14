@@ -12,24 +12,22 @@ const TransactionProvider = ({ children }) => {
     const { user } = useContext(AuthContext)
 
 
-    const getTransaction = async (userId) => {
+    const getTransaction = async () => {
         try {
             const res = await api.get('/api/transactions/get', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
             });
-
+    
             setTransactions(res.data);
-
         } catch (error) {
-            toast.success(error.response?.data?.message || 'EEError', {
+            toast.error(error.response?.data?.message || 'Xəta', {
                 position: 'bottom-right'
             });
-        } finally {
-            // setLoading(false);
         }
-    }
+    };
+    
 
     const addTransaction = async (userId, title, type, date, amount) => {
         try {

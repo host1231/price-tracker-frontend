@@ -8,6 +8,7 @@ import TransactionProvider from './context/TransactionContext'
 import { Analytics } from "@vercel/analytics/react"
 
 const App = () => {
+
   return (
     <>
       <AuthProvider>

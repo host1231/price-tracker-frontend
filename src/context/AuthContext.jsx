@@ -7,23 +7,26 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(localStorage.getItem('token') || '');
-    const [loading, setLoading] = useState(false);
+    const [userLoading, setUserLoading] = useState(false);
 
     useEffect(() => {
         if (token) {
+            setUserLoading(true); // Добавь это
             api.get('/api/auth/me', {
                 headers: { Authorization: `Bearer ${token}` }
             })
                 .then((res) => setUser(res.data))
-                .catch(() => {
-                    logout();
-                });
+                .catch(() => logout())
+                .finally(() => setUserLoading(false)); // И это
+        } else {
+            setUserLoading(false); // на случай, если токена нет
         }
     }, [token]);
+    
 
     const register = async (name, email, password) => {
         try {
-            setLoading(true);
+            setUserLoading(true);
             const res = await api.post('/api/auth/register', { name, email, password });
             toast.success(res.data.message, { position: 'bottom-right' });
             return { success: true };
@@ -31,13 +34,13 @@ export const AuthProvider = ({ children }) => {
             toast.error(error.response?.data?.message || 'Error', { position: 'bottom-right' });
             return { success: false };
         } finally {
-            setLoading(false);
+            setUserLoading(false);
         }
     };
 
     const login = async (email, password) => {
         try {
-            setLoading(true);
+            setUserLoading(true);
             const res = await api.post('/api/auth/login', { email, password });
             const { token, userId } = res.data;
 
@@ -52,7 +55,7 @@ export const AuthProvider = ({ children }) => {
             return { success: false };
         } finally {
             setTimeout(() => {
-                setLoading(false);
+                setUserLoading(false);
             }, 3000);
         }
     };
@@ -65,7 +68,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, register, login, logout, loading }}>
+        <AuthContext.Provider value={{ user, register, login, logout, userLoading }}>
             {children}
         </AuthContext.Provider>
     );
