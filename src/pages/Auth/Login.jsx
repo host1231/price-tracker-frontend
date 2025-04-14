@@ -14,7 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {loading} = useContext(AuthContext);
+  const {userLoading} = useContext(AuthContext);
   
   const [error, setError] = useState('');
 
@@ -43,7 +43,7 @@ const Login = () => {
 
   }
 
-  if (loading) {
+  if (userLoading) {
     return (
       <Preloader />
     )

@@ -10,7 +10,7 @@ import Preloader from '../../components/Preloader';
 
 
 const SignUp = () => {
-  const { register, loading } = useContext(AuthContext);
+  const { register, userLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -50,7 +50,7 @@ const SignUp = () => {
     }
   }
 
-  if (loading) {
+  if (userLoading) {
     return <Preloader />
   }
 
