@@ -57,7 +57,7 @@ const Login = () => {
         <img src={Logo} className='mx-auto mb-8 max-w-[180px] w-full' />
         <p className='text-sm font-medium text-right'>Hesabınız yoxdur? <Link className='text-blue-500 hover:underline' to='/signUp'> Yeni hesab yarat</Link></p>
         <h2 className='text-2xl text-center m-8 font-bold'>Hesabınıza daxil olun</h2>
-        <form onSubmit={handleSubmit}>
+        <form className='login-form' onSubmit={handleSubmit}>
           <Input 
             type='text'
             label='E-poçt'

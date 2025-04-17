@@ -60,7 +60,7 @@ const SignUp = () => {
         <img src={Logo} className='mx-auto mb-8 max-w-[180px] w-full' />
         <p className='text-sm font-medium text-right'>Artıq hesabınız var? <Link className='text-blue-500 hover:underline' to='/login'> Giriş səhifəsinə qayıt</Link></p>
         <h2 className='text-2xl text-center m-8 font-bold'>Qeydiyyatdan keç</h2>
-        <form onSubmit={handleSubmit}>
+        <form className='register-form' onSubmit={handleSubmit}>
           <Input
             type='text'
             label='Ad'

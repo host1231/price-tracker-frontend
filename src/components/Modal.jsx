@@ -40,7 +40,7 @@ const Modal = ({ isModalOpen, setIsModalOpen }) => {
                     <IoIosCloseCircleOutline size={30} />
                 </button>
                 <h4 className='text-2xl font-bold mb-4'>Ödəniş əlavə edin</h4>
-                <form onSubmit={handleSubmit}>
+                <form className='modal-form' onSubmit={handleSubmit}>
                     <Input
                         type='text'
                         label='Ad'
