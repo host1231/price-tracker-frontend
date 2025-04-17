@@ -45,7 +45,7 @@ const Modal = ({ isModalOpen, setIsModalOpen }) => {
                         type='text'
                         label='Ad'
                         name='name'
-                        placeholder='Araz'
+                        placeholder='Maaş'
                         value={title}
                         onChange={({ target }) => setTitle(target.value)}
                     />
