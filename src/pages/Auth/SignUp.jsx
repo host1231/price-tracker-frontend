@@ -64,6 +64,7 @@ const SignUp = () => {
           <Input
             type='text'
             label='Ad'
+            name='name'
             placeholder='Adınızı daxil edin'
             value={name}
             onChange={({ target }) => setName(target.value)}
@@ -71,6 +72,7 @@ const SignUp = () => {
           <Input
             type='text'
             label='E-poçt'
+            name='email'
             placeholder='E-poçtunuzu daxil edin'
             value={email}
             onChange={({ target }) => setEmail(target.value)}
@@ -78,6 +80,7 @@ const SignUp = () => {
           <Input
             type='password'
             label='Şifrə'
+            name='password'
             placeholder='Şifrənizi daxil edin'
             value={password}
             onChange={({ target }) => setPassword(target.value)}

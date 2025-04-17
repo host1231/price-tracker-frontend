@@ -61,12 +61,14 @@ const Login = () => {
           <Input 
             type='text'
             label='E-poçt'
+            name='email'
             placeholder='E-poçtunuzu daxil edin'
             value={email}
             onChange={({target}) => setEmail(target.value)}
           />
           <Input 
             type='password'
+            name='password'
             label='Şifrə'
             placeholder='Şifrənizi daxil edin'
             value={password}

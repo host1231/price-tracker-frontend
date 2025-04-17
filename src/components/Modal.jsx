@@ -36,7 +36,7 @@ const Modal = ({ isModalOpen, setIsModalOpen }) => {
     return (
         <div className='fixed inset-0 bg-gray-200/80  flex justify-center items-center'>
             <div className='w-full max-w-lg bg-white p-4 m-2 rounded-lg shadow-lg relative'>
-                <button onClick={() => setIsModalOpen(false)} className='cursor-pointer text-slate-500 absolute top-3 right-3 transition duration-300 hover:text-slate-800'>
+                <button id='open-modal' onClick={() => setIsModalOpen(false)} className='cursor-pointer text-slate-500 absolute top-3 right-3 transition duration-300 hover:text-slate-800'>
                     <IoIosCloseCircleOutline size={30} />
                 </button>
                 <h4 className='text-2xl font-bold mb-4'>Ödəniş əlavə edin</h4>
@@ -44,6 +44,7 @@ const Modal = ({ isModalOpen, setIsModalOpen }) => {
                     <Input
                         type='text'
                         label='Ad'
+                        name='name'
                         placeholder='Araz'
                         value={title}
                         onChange={({ target }) => setTitle(target.value)}
@@ -57,6 +58,7 @@ const Modal = ({ isModalOpen, setIsModalOpen }) => {
                     <Input
                         type='date'
                         label='Tarix'
+                        name='date'
                         placeholder="DD.MM.YYYY"
                         value={date}
                         onChange={({ target }) => setDate(target.value)}
@@ -64,6 +66,7 @@ const Modal = ({ isModalOpen, setIsModalOpen }) => {
                     <Input
                         type='number'
                         label='Məbləğ'
+                        name='amount'
                         placeholder='203'
                         value={amount}
                         onChange={({ target }) => setAmount(target.value)}
