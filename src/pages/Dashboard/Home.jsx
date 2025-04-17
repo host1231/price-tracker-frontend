@@ -65,7 +65,7 @@ const Home = () => {
         </div>
       </div>
       <div className='max-w-xs mx-auto mt-5 fixed -left-20 lg:-left-24  top-[43%] rotate-270'>
-        <button className='btn-primary flex items-center gap-5 justify-center uppercase text-sm' onClick={() => setIsModalOpen(true)}>
+        <button id='open-modal' className='btn-primary flex items-center gap-5 justify-center uppercase text-sm' onClick={() => setIsModalOpen(true)}>
           <LuTrendingUpDown />
           ödəniş əlavə edin
         </button>

@@ -20,7 +20,7 @@ const Header = () => {
           </Link>
           <div className='flex gap-3 items-center'>
             <p className='font-semibold text-sm sm:text-lg'>Salam, {user?.name}</p>
-            <button onClick={handleLogout} className='bg-red-600 text-white text-xs uppercase py-1 px-2 rounded cursor-pointer font-medium transition duration-300 hover:bg-red-800 sm:py-2 sm:px-4 sm:text-sm'>çıxış</button>
+            <button onClick={handleLogout} className='bg-red-600 text-white text-xs uppercase py-1 px-2 rounded cursor-pointer font-medium transition duration-300 hover:bg-red-800 sm:py-2 sm:px-4 sm:text-sm logout-btn'>çıxış</button>
           </div>
         </div>
       </header>
