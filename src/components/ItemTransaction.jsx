@@ -26,7 +26,7 @@ const ItemTransaction = ({ income, title, amount, date, deleteBtn }) => {
             </div>
             <div className='flex items-center gap-2 md:gap-5'>
                 <span className={`text sm:text-2xl font-bold ${income ? 'text-green-600' : 'text-red-600'}`}>{income ? '+' : '-'} {amount} ₼</span>
-                <button onClick={deleteBtn}>
+                <button id='delete-transaction' onClick={deleteBtn}>
                     <FaTrashAlt size={18} className='text-red-600 cursor-pointer hover:text-red-700 hidden md:block' />
                     <FaTrashAlt size={14} className='text-red-600 cursor-pointer hover:text-red-700 md:hidden' />
                 </button>
